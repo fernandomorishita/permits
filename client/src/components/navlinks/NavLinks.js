@@ -1,21 +1,19 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-const NavLinks = ({ auth }) => {
-  if (!auth.user) return <div></div>
+const NavLinks = ({ auth, screen }) => {
   return (
-    <div className='navlinks'>
+    <div className={`navlinks ${screen}`}>
       <div className='navlinks__general'>
         <ul>
           <li>Charts</li>
           <li>Database</li>
         </ul>
       </div>
-      {auth.isAuthenticated ? (
+      {auth.isAuthenticated && auth.user ? (
         <div className='navlinks__user'>
           <ul>
-            <li>{auth.user.name}</li>
             <li>Dashboard</li>
             <li>Application</li>
           </ul>

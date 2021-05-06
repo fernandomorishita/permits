@@ -6,16 +6,15 @@ import { connect } from 'react-redux'
 import NavbarSandwich from './NavbarSandwich'
 import Logo from '../general/Logo'
 import NavbarSign from './NavbarSign'
+import NavLinks from '../navlinks/NavLinks'
 
 const navbar = ({ auth }) => {
   return (
     <div className='navbar'>
-      {/* sandwich menu */}
       <NavbarSandwich />
-      {/* logo */}
       <Logo classes={'navbar__logo'} />
-      {/* sign in / sing out */}
       <NavbarSign />
+      <NavLinks screen='medium' />
     </div>
   )
 }

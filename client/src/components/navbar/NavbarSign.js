@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -10,16 +10,30 @@ import { logout } from '../../actions/auth'
 const NavbarSign = ({ auth, menu, toggleMobileMenu, logout }) => {
   return (
     <div onClick={menu.showMobileMenu ? () => toggleMobileMenu() : () => {}} className='navbar__sign'>
-      {auth.isAuthenticated ? (
-        <div onClick={() => logout()}>
-          <small>Sign out</small>
-        </div>
+      {auth.isAuthenticated && auth.user ? (
+        <Fragment>
+          <div className='btn medium'>
+            <Link to='/login'>
+              <small>@{auth.user.name} </small>
+            </Link>
+          </div>
+          <div className='btn' onClick={() => logout()}>
+            <small>Sign out</small>
+          </div>
+        </Fragment>
       ) : (
-        <div>
-          <Link to='/login'>
-            <small>Sign in</small>
-          </Link>
-        </div>
+        <Fragment>
+          <div className='btn'>
+            <Link to='/login'>
+              <small>Sign in</small>
+            </Link>
+          </div>
+          <div className='btn medium'>
+            <Link to='/register'>
+              <small>Sign up</small>
+            </Link>
+          </div>
+        </Fragment>
       )}
     </div>
   )

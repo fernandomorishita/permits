@@ -34,6 +34,13 @@ ul {
   }
 }
 
+.medium {
+  display: none;
+  @include atMedium {
+    display: block;
+  }
+}
+
 /* Forms */
 .form {
   label {
@@ -197,15 +204,32 @@ ul {
   }
 
   &__sign {
+    display: flex;
     justify-self: right;
     color: white;
 
     @include atMedium {
-      display: none;
+      //display: none;
     }
   }
 }
 
+/*=== Section - Navlinks */
+.navlinks {
+  @include atMedium {
+    display: flex;
+    grid-row: 1;
+    grid-column: 2;
+    justify-self: center;
+    ul {
+      display: flex;
+    }
+
+    li {
+      padding: 0 10px;
+    }
+  }
+}
 /*=== Section - Mobile Menu */
 .mobile-menu {
   width: 100%;
