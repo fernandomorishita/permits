@@ -2,7 +2,7 @@
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const REGISTER_FAIL = 'REGISTER_FAIL'
 export const USER_LOADED = 'USER_LOADED'
-export const AUTH_ERROR = 'AUTH_ERROR'
+export const USER_NOT_LOADED = 'USER_NOT_LOADED'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGOUT = 'LOGOUT'
@@ -14,3 +14,4 @@ export const HIDE_MOBILE_MENU = 'HIDE_MOBILE_MENU'
 // Application
 export const GET_APPLICATION = 'GET_APPLICATION'
 export const APPLICATION_ERROR = 'APPLICATION_ERROR'
+export const CLEAR_APPLICATION = 'CLEAR_APPLICATION'

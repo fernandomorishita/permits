@@ -3,10 +3,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 
-// components
+// Components
 import Logo from '../general/Logo'
 
-const Login = ({ auth }) => {
+// Actions
+import { login } from '../../actions/auth'
+
+const Login = ({ auth, login }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -15,22 +18,28 @@ const Login = ({ auth }) => {
   const { email, password } = formData
 
   if (auth.isAuthenticated) return <Redirect to='/dashboard' />
+
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+  const onSubmit = async e => {
+    e.preventDefault()
+    login(email, password)
+  }
   return (
     <div className='auth'>
       <Logo classes='auth__logo' />
       <div className='auth__form'>
         <small className='auth__text'>Sign in to CAPermits</small>
-        <form className='form'>
+        <form onSubmit={e => onSubmit(e)} className='form'>
           <div className='form__field'>
             <label>
               Email
-              <input type='text' className='form__input' />
+              <input type='text' name='email' className='form__input' onChange={e => onChange(e)} required />
             </label>
           </div>
           <div className='form__field form__field--last'>
             <label>
               Password
-              <input type='text' placeholder='6+ characters' className='form__input' />
+              <input type='password' name='password' placeholder='6+ characters' className='form__input' onChange={e => onChange(e)} required />
             </label>
           </div>
           <input type='submit' className='form__btn btn' value='Sign in' />
@@ -46,6 +55,7 @@ const Login = ({ auth }) => {
 }
 
 Login.propTypes = {
+  login: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 }
 
@@ -53,4 +63,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps, { login })(Login)

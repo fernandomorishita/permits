@@ -13,11 +13,17 @@ import MobileMenu from './components/mobile/menu/MobileMenu'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 
+// Actions
+import { loadUser } from './actions/auth'
+
 if (localStorage.token) {
   setAuthToken(localStorage.token)
 }
 
 const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser())
+  }, [])
   return (
     <Provider store={store}>
       <Router>

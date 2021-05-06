@@ -52,7 +52,6 @@ router.post('/', [check('email', 'Include a valid email').isEmail(), check('pass
       res.json({ token })
     })
   } catch (error) {
-    console.error(error.message)
     res.status(500).send('Server error, yo.')
   }
 })

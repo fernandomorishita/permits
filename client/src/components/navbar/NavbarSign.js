@@ -5,17 +5,18 @@ import { Link } from 'react-router-dom'
 
 // actions
 import { toggleMobileMenu } from '../../actions/menu'
+import { logout } from '../../actions/auth'
 
-const NavbarSign = ({ auth, menu, toggleMobileMenu }) => {
+const NavbarSign = ({ auth, menu, toggleMobileMenu, logout }) => {
   return (
     <div onClick={menu.showMobileMenu ? () => toggleMobileMenu() : () => {}} className='navbar__sign'>
       {auth.isAuthenticated ? (
-        <div>
+        <div onClick={() => logout()}>
           <small>Sign out</small>
         </div>
       ) : (
         <div>
-          <Link to='/register'>
+          <Link to='/login'>
             <small>Sign in</small>
           </Link>
         </div>
@@ -26,6 +27,7 @@ const NavbarSign = ({ auth, menu, toggleMobileMenu }) => {
 
 NavbarSign.propTypes = {
   toggleMobileMenu: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   menu: PropTypes.object.isRequired
 }
@@ -34,4 +36,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
   menu: state.menu
 })
-export default connect(mapStateToProps, { toggleMobileMenu })(NavbarSign)
+export default connect(mapStateToProps, { toggleMobileMenu, logout })(NavbarSign)
