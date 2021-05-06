@@ -10,3 +10,7 @@ export const LOGOUT = 'LOGOUT'
 // Menu
 export const TOGGLE_MOBILE_MENU = 'TOGGLE_MOBILE_MENU'
 export const HIDE_MOBILE_MENU = 'HIDE_MOBILE_MENU'
+
+// Application
+export const GET_APPLICATION = 'GET_APPLICATION'
+export const APPLICATION_ERROR = 'APPLICATION_ERROR'

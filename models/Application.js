@@ -5,10 +5,6 @@ const ApplicationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
-  alias: {
-    type: String,
-    required: true
-  },
   status: {
     type: String
   },

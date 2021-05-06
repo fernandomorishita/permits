@@ -9,6 +9,7 @@ import store from './store'
 
 // Components
 import Navbar from './components/navbar/Navbar'
+import MobileMenu from './components/mobile/menu/MobileMenu'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token)
@@ -21,6 +22,9 @@ const App = () => {
         <Fragment>
           <section className='page-container'>
             <Navbar />
+            <section className='content-container'>
+              <MobileMenu />
+            </section>
           </section>
         </Fragment>
       </Router>

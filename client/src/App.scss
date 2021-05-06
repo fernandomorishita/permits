@@ -46,12 +46,19 @@ ul {
   width: 100%;
 }
 
+.content-container {
+  border-top: 1px solid white;
+  height: 100%;
+  padding-top: 50px;
+}
+
 /* 3 - Sections */
 /*=== Section - Navbar */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
+  height: 50px;
   padding: 10px;
   background: grey;
   display: grid;
@@ -144,10 +151,26 @@ ul {
     a {
       color: white;
     }
+    @include atMedium {
+      grid-column: 1;
+      justify-self: left;
+    }
   }
 
   &__sign {
     justify-self: right;
     color: white;
+
+    @include atMedium {
+      display: none;
+    }
   }
+}
+
+/*=== Section - Mobile Menu */
+.mobile-menu {
+  width: 100%;
+  height: 100%;
+  background: grey;
+  display: none;
 }
