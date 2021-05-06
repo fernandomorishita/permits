@@ -6,6 +6,7 @@ export const USER_NOT_LOADED = 'USER_NOT_LOADED'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGOUT = 'LOGOUT'
+export const LOADING_AUTH = 'LOADING_AUTH'
 
 // Menu
 export const TOGGLE_MOBILE_MENU = 'TOGGLE_MOBILE_MENU'

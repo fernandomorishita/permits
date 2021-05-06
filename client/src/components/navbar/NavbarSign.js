@@ -18,7 +18,9 @@ const NavbarSign = ({ auth, menu, toggleMobileMenu, logout }) => {
             </Link>
           </div>
           <div className='btn' onClick={() => logout()}>
-            <small>Sign out</small>
+            <Link to='/'>
+              <small>Sign out</small>
+            </Link>
           </div>
         </Fragment>
       ) : (

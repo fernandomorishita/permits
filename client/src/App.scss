@@ -41,6 +41,11 @@ ul {
   }
 }
 
+.small {
+  @include atMedium {
+    display: none;
+  }
+}
 /* Forms */
 .form {
   label {
@@ -216,6 +221,26 @@ ul {
 
 /*=== Section - Navlinks */
 .navlinks {
+  &__general {
+    padding-bottom: 20px;
+    @include atMedium {
+      padding-bottom: 0;
+    }
+  }
+
+  &__user {
+    padding-top: 20px;
+    @include atMedium {
+      padding: 0;
+    }
+  }
+
+  &__separator {
+    border-top: 1px solid white;
+    @include atMedium {
+      display: none;
+    }
+  }
   @include atMedium {
     display: flex;
     grid-row: 1;
@@ -236,6 +261,20 @@ ul {
   height: 100%;
   background: grey;
   display: none;
+  padding: 20px;
+
+  &--is-visible {
+    display: block;
+  }
+
+  li {
+    padding: 10px 0;
+  }
+
+  @include atMedium {
+    display: none;
+    z-index: 0;
+  }
 }
 
 /*=== Section - Register/Login */

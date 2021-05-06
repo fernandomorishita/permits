@@ -1,4 +1,4 @@
-import { USER_LOADED, USER_NOT_LOADED, REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, CLEAR_APPLICATION, LOGOUT } from './types'
+import { USER_LOADED, USER_NOT_LOADED, REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, CLEAR_APPLICATION, LOGOUT, LOADING_AUTH } from './types'
 import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken'
 
@@ -66,7 +66,6 @@ export const login = (email, password) => async dispatch => {
       type: LOGIN_SUCCESS,
       payload: res.data // token
     })
-
     dispatch(loadUser())
   } catch (error) {
     const errors = error.response.data.errors

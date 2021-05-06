@@ -9,6 +9,7 @@ import NavbarSign from './NavbarSign'
 import NavLinks from '../navlinks/NavLinks'
 
 const navbar = ({ auth }) => {
+  if (auth.isLoading) return <div></div>
   return (
     <div className='navbar'>
       <NavbarSandwich />
