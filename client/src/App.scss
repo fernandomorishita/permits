@@ -1,4 +1,153 @@
+/* Variables */
 $primaryColor: grey;
 
+/* Globals */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100vh;
+}
+
 body {
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Medias */
+@mixin atMedium {
+  @media (min-width: 800px) {
+    @content;
+  }
+}
+
+/* 1 - Root */
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+/* 2 - Page Container */
+.page-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* 3 - Sections */
+/*=== Section - Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  background: grey;
+  display: grid;
+  grid-template-columns: 20% auto 20%;
+  align-items: center;
+
+  &__sw {
+    width: 25px;
+    height: 21px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-column: 1;
+    grid-row: 1;
+
+    @include atMedium {
+      display: none;
+    }
+
+    &-hidden {
+      display: none;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+
+      &--is-visible {
+        display: grid;
+      }
+    }
+
+    &-top {
+      grid-column: 1;
+      grid-row: 1;
+      height: 3px;
+      width: 100%;
+      background: white;
+    }
+
+    &-mid {
+      grid-column: 1;
+      grid-row: 2;
+      height: 3px;
+      width: 100%;
+      background: white;
+      align-self: center;
+    }
+
+    &-bot {
+      grid-column: 1;
+      grid-row: 3;
+      height: 3px;
+      width: 100%;
+      background: white;
+      align-self: end;
+    }
+
+    &-shown {
+      display: none;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+
+      &--is-visible {
+        display: grid;
+      }
+    }
+
+    &-c1 {
+      grid-column: 1;
+      grid-row: 2;
+      height: 3px;
+      width: 100%;
+      background: white;
+      align-self: center;
+      transform: rotate(45deg);
+    }
+
+    &-c2 {
+      grid-column: 1;
+      grid-row: 2;
+      height: 3px;
+      width: 100%;
+      background: white;
+      align-self: center;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__logo {
+    justify-self: center;
+    font-size: 1.2rem;
+    a {
+      color: white;
+    }
+  }
+
+  &__sign {
+    justify-self: right;
+    color: white;
+  }
 }
