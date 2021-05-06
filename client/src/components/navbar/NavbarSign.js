@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 // actions
 import { toggleMobileMenu } from '../../actions/menu'
@@ -14,7 +15,9 @@ const NavbarSign = ({ auth, menu, toggleMobileMenu }) => {
         </div>
       ) : (
         <div>
-          <small>Sign in</small>
+          <Link to='/register'>
+            <small>Sign in</small>
+          </Link>
         </div>
       )}
     </div>
