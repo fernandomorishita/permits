@@ -20,6 +20,18 @@ const ApplicationSchema = new mongoose.Schema({
       type: String
     }
   },
+  location: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'city'
+    },
+    province: {
+      type: String
+    },
+    city: {
+      type: String
+    }
+  },
   applicants: [
     {
       type: {
@@ -41,7 +53,8 @@ const ApplicationSchema = new mongoose.Schema({
           type: String
         },
         is_upfront: {
-          type: Boolean
+          type: String,
+          default: 'Requested'
         }
       },
       biometrics: {

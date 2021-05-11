@@ -17,7 +17,7 @@ export default function auth(state = initialState, action) {
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem('token', payload.token)
-      return { ...state, ...payload, isAuthenticated: true, isLoading: true }
+      return { ...state, ...payload, isAuthenticated: true, isLoading: false }
     case REGISTER_FAIL:
     case USER_NOT_LOADED:
     case LOGIN_FAIL:

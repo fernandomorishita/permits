@@ -1,4 +1,4 @@
-import { GET_APPLICATION, APPLICATION_ERROR, CLEAR_APPLICATION } from '../actions/types'
+import { APPLICATION_READ, APPLICATION_ERROR, CLEAR_APPLICATION } from '../actions/types'
 
 const initialState = {
   application: null,
@@ -8,11 +8,11 @@ const initialState = {
 export default function application(state = initialState, action) {
   const { type, payload } = action
   switch (type) {
-    case GET_APPLICATION:
-      return { ...state, application: payload }
+    case APPLICATION_READ:
+      return { ...state, application: payload, isLoading: false }
     case APPLICATION_ERROR:
     case CLEAR_APPLICATION:
-      return { ...state, application: null, isLoading: true }
+      return { ...state, application: null, isLoading: false }
     default:
       return state
   }

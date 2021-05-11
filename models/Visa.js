@@ -4,7 +4,7 @@ const VisaSchema = new mongoose.Schema({
   type: {
     type: String
   },
-  application: [
+  applicants: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'application'

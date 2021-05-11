@@ -36,8 +36,8 @@ const App = () => {
         <Fragment>
           <section className='page-container'>
             <Navbar />
-            <section className='content-container'>
-              <MobileMenu />
+            <MobileMenu />
+            <section className='content'>
               <Route exact path='/' component={Landing} />
               <Switch>
                 <Route exact path='/register' component={Register} />

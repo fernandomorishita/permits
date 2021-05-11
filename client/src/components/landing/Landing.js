@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-const Landing = props => {
+// Actions
+import { getVisas } from '../../actions/visas'
+
+const Landing = ({ getVisas }) => {
+  useEffect(() => {
+    getVisas()
+  }, [])
+
   return <div>Landing</div>
 }
 
-Landing.propTypes = {}
+Landing.propTypes = {
+  getVisas: PropTypes.func.isRequired,
+  visas: PropTypes.object.isRequired
+}
 
-export default Landing
+const mapStateToProps = state => ({
+  visas: state.visas
+})
+export default connect(mapStateToProps, { getVisas })(Landing)

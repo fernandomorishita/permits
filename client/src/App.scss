@@ -52,6 +52,16 @@ ul {
     font-weight: bold;
   }
 
+  &__separator {
+    margin: 10px 0;
+    border: 1px solid black;
+
+    &--last {
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+  }
+
   &__field {
     padding-top: 20px;
     &--last {
@@ -59,13 +69,43 @@ ul {
     }
   }
 
+  &__label {
+    padding-bottom: 10px;
+
+    &--bold {
+      font-weight: bold;
+    }
+  }
+
   &__input {
     width: 100%;
-    font-size: 1.2rem;
     padding: 10px;
     border-radius: 10px;
     border: none;
     background: lightgrey;
+  }
+
+  &__opt {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: lightgrey;
+  }
+
+  &__short {
+    width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: lightgrey;
+  }
+
+  &__flex {
+    display: flex;
+
+    &--justify {
+      justify-content: space-between;
+    }
   }
 
   &__btn {
@@ -73,6 +113,22 @@ ul {
     border: none;
     font-size: 1.2rem;
     padding: 10px;
+    @include atMedium {
+      width: inherit;
+      font-size: 1rem;
+    }
+  }
+
+  &__padding {
+    padding: 0 5px;
+  }
+
+  &__applicant {
+    padding-bottom: 20px;
+  }
+
+  &__icon {
+    font-size: 1.5rem;
   }
 }
 
@@ -84,6 +140,11 @@ ul {
   transition: opacity 0.2s ease-in;
   outline: none;
   border: none;
+  text-align: center;
+
+  &-grey {
+    background: grey;
+  }
 }
 /* 1 - Root */
 #root {
@@ -97,10 +158,15 @@ ul {
   width: 100%;
 }
 
-.content-container {
+.content {
   border-top: 1px solid white;
   height: 100%;
   padding-top: 50px;
+
+  &--pw {
+    padding: 0 20px;
+  }
+  //padding: 50px 20px;
 }
 
 /* 3 - Sections */
@@ -115,7 +181,8 @@ ul {
   display: grid;
   grid-template-columns: 20% auto 20%;
   align-items: center;
-
+  z-index: 1;
+  border-bottom: 1px solid white;
   a {
     color: white;
   }
@@ -261,7 +328,9 @@ ul {
   height: 100%;
   background: grey;
   display: none;
-  padding: 20px;
+  padding: 70px 20px 0 20px;
+  position: absolute;
+  top: 0;
 
   &--is-visible {
     display: block;
@@ -294,5 +363,12 @@ ul {
   &__footer {
     padding-top: 20px;
     text-align: center;
+  }
+}
+
+/*=== Section - Application */
+.application {
+  @include atMedium {
+    padding: 0 30%;
   }
 }

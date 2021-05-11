@@ -13,9 +13,7 @@ const NavbarSign = ({ auth, menu, toggleMobileMenu, logout }) => {
       {auth.isAuthenticated && auth.user ? (
         <Fragment>
           <div className='btn medium'>
-            <Link to='/login'>
-              <small>@{auth.user.name} </small>
-            </Link>
+            <small>@{auth.user.name} </small>
           </div>
           <div className='btn' onClick={() => logout()}>
             <Link to='/'>
