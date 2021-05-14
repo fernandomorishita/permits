@@ -53,6 +53,9 @@ export const register = (name, email, password) => async dispatch => {
 
 // Login User
 export const login = (email, password) => async dispatch => {
+  dispatch({
+    type: LOADING_AUTH
+  })
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -68,11 +71,8 @@ export const login = (email, password) => async dispatch => {
     })
     dispatch(loadUser())
   } catch (error) {
-    const errors = error.response.data.errors
+    //const errors = error.response.data.errors
     console.log(error)
-    if (errors) {
-      //errors.forEach(e => dispatch(setAlert(e.msg, 'danger')))
-    }
     dispatch({
       type: LOGIN_FAIL
     })

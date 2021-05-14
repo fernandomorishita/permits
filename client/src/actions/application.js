@@ -13,6 +13,7 @@ export const getApplication = () => async dispatch => {
       payload: res.data
     })
   } catch (error) {
+    console.log(error)
     dispatch({
       type: APPLICATION_ERROR
     })

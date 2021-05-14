@@ -38,28 +38,20 @@ const Register = ({ auth, register }) => {
         <small className='auth__text'>Sign up to CAPermits</small>
         <form onSubmit={e => onSubmit(e)} className='form'>
           <div className='form__field'>
-            <label>
-              Name
-              <input type='text' name='name' className='form__input' onChange={e => onChange(e)} required />
-            </label>
+            <div className='form__label form__label--bold'>Name</div>
+            <input type='text' name='name' className='form__input' onChange={e => onChange(e)} required />
           </div>
           <div className='form__field'>
-            <label>
-              Email
-              <input type='text' name='email' className='form__input' onChange={e => onChange(e)} required />
-            </label>
+            <div className='form__label form__label--bold'>Email</div>
+            <input type='text' name='email' className='form__input' onChange={e => onChange(e)} required />
           </div>
           <div className='form__field'>
-            <label>
-              Password
-              <input type='password' name='password' placeholder='6+ characters' className='form__input' onChange={e => onChange(e)} required />
-            </label>
+            <div className='form__label form__label--bold'>Password</div>
+            <input type='password' name='password' placeholder='6+ characters' className='form__input' onChange={e => onChange(e)} required />
           </div>
           <div className='form__field form__field--last'>
-            <label>
-              Confirm your password
-              <input type='password' name='password2' className='form__input' onChange={e => onChange(e)} required />
-            </label>
+            <div className='form__label form__label--bold'>Confirm you password</div>
+            <input type='password' name='password2' className='form__input' onChange={e => onChange(e)} required />
           </div>
           <input type='submit' className='form__btn btn' value='Create Account' />
         </form>

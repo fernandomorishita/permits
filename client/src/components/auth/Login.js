@@ -31,16 +31,12 @@ const Login = ({ auth, login }) => {
         <small className='auth__text'>Sign in to CAPermits</small>
         <form onSubmit={e => onSubmit(e)} className='form'>
           <div className='form__field'>
-            <label>
-              Email
-              <input type='text' name='email' className='form__input' onChange={e => onChange(e)} required />
-            </label>
+            <div className='form__label form__label--bold'>Email</div>
+            <input type='text' name='email' className='form__input' onChange={e => onChange(e)} required />
           </div>
           <div className='form__field form__field--last'>
-            <label>
-              Password
-              <input type='password' name='password' placeholder='6+ characters' className='form__input' onChange={e => onChange(e)} required />
-            </label>
+            <div className='form__label form__label--bold'>Password</div>
+            <input type='password' name='password' placeholder='6+ characters' className='form__input' onChange={e => onChange(e)} required />
           </div>
           <input type='submit' className='form__btn btn' value='Sign in' />
         </form>
