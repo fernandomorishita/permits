@@ -44,7 +44,7 @@ const Application = ({ visas: { visas }, application, getVisas, createOrUpdateAp
   // useEffects
   useEffect(() => {
     getVisas()
-  }, [])
+  })
 
   useEffect(() => {
     getApplication()

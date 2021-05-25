@@ -20,3 +20,7 @@ export const CLEAR_APPLICATION = 'CLEAR_APPLICATION'
 // Visa
 export const GET_VISAS = 'GET_VISAS'
 export const VISAS_ERROR = 'VISAS_ERROR'
+
+// Queries
+export const QUERY_CHARTS = 'QUERY_CHARTS'
+export const QUERY_ERROR = 'QUERY_ERROR'

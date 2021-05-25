@@ -1,5 +1,6 @@
 /* Variables */
 $primaryColor: grey;
+$secondaryColor: #eeeeee;
 
 /* Globals */
 * {
@@ -56,6 +57,18 @@ ul {
   }
 }
 
+.wrapper {
+  &__data {
+    @include atMedium {
+      padding: 20px 20px;
+    }
+  }
+  &__pie {
+    @include atMedium {
+      padding: 0 20px;
+    }
+  }
+}
 /* Forms */
 .form {
   label {
@@ -457,5 +470,114 @@ ul {
 
   &__line {
     padding-bottom: 5px;
+  }
+}
+
+/*=== Section - Landing */
+.landing {
+  padding: 20px 0;
+}
+
+.pies {
+  @include atMedium {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.pie {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  padding: 20px 0;
+
+  &__chart {
+    padding-right: 20px;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  &__label {
+    font-size: 2.5rem;
+    grid-column: 1;
+    grid-row: 1;
+    padding-bottom: 20px;
+    padding-right: 110px;
+  }
+
+  &__sublabel {
+    padding-top: 50px;
+    grid-column: 1;
+    grid-row: 1;
+    padding-right: 110px;
+  }
+
+  @include atMedium {
+    border: 1px solid $secondaryColor;
+    box-shadow: 1px 1px 5px $secondaryColor;
+    border-radius: 20px;
+  }
+}
+
+.bars {
+  padding: 20px 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 100px 1fr 1fr;
+}
+
+.bar {
+  &__title {
+    font-weight: bold;
+    padding: 20px 0;
+  }
+  &__1 {
+    grid-column: 1 / span 2;
+  }
+
+  &__2 {
+    grid-column: 4 / span 2;
+  }
+}
+
+/*=== Section - Data */
+.data-display {
+  @include atMedium {
+    display: flex;
+    justify-content: center;
+  }
+}
+.data {
+  padding: 20px 0;
+  text-align: center;
+
+  &__title {
+    padding-bottom: 20px;
+    font-weight: bold;
+    @include atMedium {
+      padding-bottom: 30px;
+    }
+  }
+
+  &__flex {
+    display: flex;
+    justify-content: center;
+  }
+  &__item {
+    padding: 0 20px;
+    @include atMedium {
+      padding: 0px 50px;
+    }
+  }
+
+  &__subtitle {
+    padding: 0px 0;
+  }
+
+  @include atMedium {
+    padding: 30px 0;
+    border: 1px solid $secondaryColor;
+    box-shadow: 1px 1px 5px $secondaryColor;
+    border-radius: 20px;
   }
 }

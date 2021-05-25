@@ -14,10 +14,13 @@ const ApplicationSchema = new mongoose.Schema({
       required: true
     },
     month: {
+      type: Number
+    },
+    fullmonth: {
       type: String
     },
     year: {
-      type: String
+      type: Number
     }
   },
   location: {
@@ -95,6 +98,15 @@ const ApplicationSchema = new mongoose.Schema({
   response: {
     date: {
       type: String
+    },
+    month: {
+      type: Number
+    },
+    fullmonth: {
+      type: String
+    },
+    year: {
+      type: Number
     },
     id: {
       type: mongoose.Schema.Types.ObjectId,

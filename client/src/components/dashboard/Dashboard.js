@@ -11,12 +11,11 @@ import DashApplicant from './DashApplicant'
 
 // Library
 import { calcProcessingWeeks } from '../../utils/library'
-import { compose } from 'redux'
 
 const Dashboard = ({ auth, application, getApplication }) => {
   useEffect(() => {
     getApplication()
-  }, [])
+  })
 
   if (application.isLoading || auth.isLoading || auth.user === null) {
     return <Spinner />

@@ -1,9 +1,6 @@
 import axios from 'axios'
 import { APPLICATION_READ, APPLICATION_ERROR } from './types'
 
-// Actions
-import { addApplicantToVisa } from './visas'
-
 // Get current user application
 export const getApplication = () => async dispatch => {
   try {

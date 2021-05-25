@@ -20,7 +20,9 @@ const navbar = ({ auth }) => {
   )
 }
 
-navbar.propTypes = {}
+navbar.propTypes = {
+  auth: PropTypes.object.isRequired
+}
 
 const mapStateToProps = state => ({
   auth: state.auth
