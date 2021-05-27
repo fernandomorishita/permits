@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { check, validationResult } = require('express-validator')
+const moment = require('moment')
 
 const auth = require('../../middleware/auth')
 const Application = require('../../models/Application')
@@ -43,8 +44,9 @@ router.post('/', [auth, [check('applDate', 'Application date is required.').not(
     status: 'Waiting',
     date: {
       date: applDate,
-      month: getMonthName(applDate),
-      year: getYear(applDate)
+      month: parseInt(moment(applDate, 'YYYY-MM-DD').format('MM')),
+      fullmonth: moment(applDate, 'YYYY-MM-DD').format('MMMM'),
+      year: parseInt(moment(applDate, 'YYYY-MM-DD').format('YYYY'))
     },
     applicants: applicants,
     consultant: {

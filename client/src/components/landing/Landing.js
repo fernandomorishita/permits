@@ -26,14 +26,14 @@ const Landing = ({ queries, getChartsQuery }) => {
 
   return (
     <div className='landing'>
-      <div className='data-display'>
-        <Responses responses={data.responses} />
-        <Averages database={data.averages} />
-      </div>
       <div className='pies'>
         <PieChart database={data.applicationsChart} />
         <PieChart database={data.processedChart} />
         <PieChart database={data.awaitingChart} />
+      </div>
+      <div className='data-display'>
+        <Responses responses={data.responses} />
+        <Averages database={data.averages} />
       </div>
       <div className='bars'>
         <BarChart database={data.processedDates} title='Processed by Application Year' divClass='medium bar__1' />

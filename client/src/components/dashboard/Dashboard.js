@@ -15,7 +15,7 @@ import { calcProcessingWeeks } from '../../utils/library'
 const Dashboard = ({ auth, application, getApplication }) => {
   useEffect(() => {
     getApplication()
-  })
+  }, [])
 
   if (application.isLoading || auth.isLoading || auth.user === null) {
     return <Spinner />
@@ -44,7 +44,7 @@ const Dashboard = ({ auth, application, getApplication }) => {
       </div>
       <div className='dashboard__title'>Applicants</div>
       {application.application.applicants.map(applicant => {
-        return <DashApplicant id={applicant._id} applicant={applicant} />
+        return <DashApplicant key={applicant._id} applicant={applicant} />
       })}
     </div>
   )

@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'
 const Status = ({ value, icon, text }) => {
   return (
     <Fragment>
-      {value} <i class={`fas fa-${icon}`}></i>
+      {value} <i className={`fas fa-${icon}`}></i>
       <small> {text}</small>
     </Fragment>
   )
