@@ -21,6 +21,14 @@ export const CLEAR_APPLICATION = 'CLEAR_APPLICATION'
 export const GET_VISAS = 'GET_VISAS'
 export const VISAS_ERROR = 'VISAS_ERROR'
 
+// Visa Offices
+export const GET_VISA_OFFICES = 'GET_VISA_OFFICES'
+export const VISA_OFFICES_ERROR = 'VISA_OFFICES_ERROR'
+
+// Vacs
+export const GET_VACS = 'GET_VACS'
+export const VACS_ERROR = 'VACS_ERROR'
+
 // Queries
 export const QUERY_CHARTS = 'QUERY_CHARTS'
 export const QUERY_ERROR = 'QUERY_ERROR'

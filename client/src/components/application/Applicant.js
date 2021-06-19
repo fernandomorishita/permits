@@ -44,11 +44,10 @@ const Applicants = ({ visas: { visas }, applicant, index, formData, setFormData 
 
   return (
     <div className='form__applicant'>
-      <div className='form__separator'></div>
       <div className='form__flex form__flex--justify'>
         {applicant.type !== 'Main' ? (
           <Fragment>
-            <div className='form__label'>
+            <div className='form__field'>
               <input type='text' className='form__short' value={applicant.type} onChange={e => onChange(e, index, 'type')} />
             </div>
             <i onClick={e => handleRemoveAppl(e, index)} className='fas fa-ban form__icon'></i>
@@ -57,27 +56,29 @@ const Applicants = ({ visas: { visas }, applicant, index, formData, setFormData 
           <div className='form__label'>{applicant.type}</div>
         )}
       </div>
-      <div className='form__flex'>
-        <select className='form__opt' name='visas' id='' value={applicant.visa_type} onChange={e => onChange(e, index, 'visa')}>
-          <option value='Permit'>Permit</option>
-          {visas.map(visa => {
-            return (
-              <option key={visa._id} data-id={visa._id} value={visa.type}>
-                {visa.type}
-              </option>
-            )
-          })}
-        </select>
-        <div className='form__padding'></div>
-        <select className='form__opt' value={applicant.status} onChange={e => onChange(e, index, 'status')}>
-          <option value='Status'>Status</option>
-          <option value='Waiting'>Waiting</option>
-          <option value='Approved'>Approved</option>
-          <option value='Denied'>Denied</option>
-        </select>
+      <div className='form__field'>
+        <div className='form__flex'>
+          <select className='form__opt' name='visas' id='' value={applicant.visa_type} onChange={e => onChange(e, index, 'visa')}>
+            <option value='Permit'>Permit</option>
+            {visas.map(visa => {
+              return (
+                <option key={visa._id} data-id={visa._id} value={visa.type}>
+                  {visa.type}
+                </option>
+              )
+            })}
+          </select>
+          <div className='form__padding'></div>
+          <select className='form__opt' value={applicant.status} onChange={e => onChange(e, index, 'status')}>
+            <option value='Status'>Status</option>
+            <option value='Waiting'>Awaiting</option>
+            <option value='Approved'>Approved</option>
+            <option value='Denied'>Denied</option>
+          </select>
+        </div>
       </div>
       <div className='form__field'>
-        <div className='form__label'>Medical date </div>
+        <div className='form__label'>Medical date (approval)</div>
         <div className='form__flex'>
           <input className='form__short' type='date' value={applicant.medical.date} onChange={e => onChange(e, index, 'medDate')} />
           <div className='form__padding'></div>
@@ -90,6 +91,9 @@ const Applicants = ({ visas: { visas }, applicant, index, formData, setFormData 
       <div className='form__field'>
         <div className='form__label'>Biometrics date </div>
         <input className='form__short' type='date' value={applicant.biometrics.date} onChange={e => onChange(e, index, 'bioDate')} />
+      </div>
+      <div className='form__section-label'>
+        <div className='form__separator form__separator--dashed'></div>
       </div>
     </div>
   )

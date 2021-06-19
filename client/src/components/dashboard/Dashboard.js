@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 // Actions
 import { getApplication } from '../../actions/application'
@@ -21,7 +22,18 @@ const Dashboard = ({ auth, application, getApplication }) => {
     return <Spinner />
   }
 
-  if (application.application === null) return <div></div>
+  if (application.application === null) {
+    return (
+      <div className='dashboard'>
+        <div className='dashboard__create'>
+          <h1>Create an application!</h1>
+          <Link to='/application' className='btn btn-grey'>
+            Create!
+          </Link>
+        </div>
+      </div>
+    )
+  }
 
   const responseDate = application.application.response ? application.application.response.date : ''
   const elapsedWeeks = calcProcessingWeeks(application.application.date.date, responseDate)

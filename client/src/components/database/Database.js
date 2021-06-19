@@ -7,6 +7,8 @@ import Spinner from '../general/Spinner'
 import Table from './Table'
 import moment from 'moment'
 
+import SelectColumnFilter from './SelectColumnFilter'
+
 const Database = ({ queries: { applications, isLoading }, getChartsQuery, history }) => {
   useEffect(() => {
     const axiosRequest = axios.CancelToken.source()
@@ -18,51 +20,129 @@ const Database = ({ queries: { applications, isLoading }, getChartsQuery, histor
 
   const data = useMemo(() => applications)
   const columns = useMemo(() => [
-    ,
     {
-      Header: ' ',
-      Cell: ({ row }) => {
-        return <div>{row.index + 1}</div>
-      }
+      Header: 'Application',
+      columns: [
+        {
+          Header: ' ',
+          Cell: ({ row }) => {
+            return <div>{row.index + 1}</div>
+          }
+        },
+        {
+          Header: 'ID',
+          accessor: '_id'
+        },
+        {
+          Header: 'Name',
+          accessor: 'user_id.name',
+          width: 10000
+        },
+        {
+          Header: 'Application Date',
+          accessor: 'date.date'
+        },
+        {
+          Header: 'Status',
+          accessor: 'status',
+          Filter: SelectColumnFilter,
+          filter: 'includes'
+        },
+        {
+          Header: 'Visas',
+          //accessor: 'visas',
+          accessor: data => {
+            let output = []
+            data.applicants.map(applicant => {
+              output.push(applicant.visa_type)
+            })
+            return output.join(', ')
+          },
+          Filter: SelectColumnFilter,
+          filter: 'includes'
+        },
+        {
+          Header: 'Total Time (weeks)',
+          accessor: 'procWeeks'
+        },
+        {
+          Header: 'Online/Paper',
+          accessor: 'type',
+          Filter: SelectColumnFilter,
+          filter: 'includes'
+        }
+      ]
     },
     {
-      Header: 'ID',
-      accessor: '_id'
+      Header: 'Response',
+      columns: [
+        {
+          Header: 'Date',
+          accessor: 'response.date'
+        },
+        {
+          Header: 'Office',
+          accessor: 'response.visaoffice',
+          Filter: SelectColumnFilter,
+          filter: 'includes'
+        }
+      ]
     },
     {
-      Header: 'Date',
-      accessor: 'date.date'
+      Header: 'Passport',
+      columns: [
+        {
+          Header: 'Date Sent',
+          accessor: 'passport.date_sent'
+        },
+        {
+          Header: 'Date Received',
+          accessor: 'passport.date_received'
+        },
+        {
+          Header: 'to VAC',
+          accessor: 'passport.vac'
+        },
+        {
+          Header: 'Wait Time (weeks)',
+          accessor: 'passWeeks'
+        }
+      ]
     },
     {
-      Header: 'Status',
-      accessor: 'status'
+      Header: 'Biometrics (main)',
+      columns: [
+        {
+          Header: 'Date',
+          accessor: 'applicants[0].biometrics.date'
+        }
+      ]
     },
     {
-      Header: 'Visas',
-      //accessor: 'visas',
-      accessor: data => {
-        let output = []
-        data.applicants.map(applicant => {
-          output.push(applicant.visa_type)
-        })
-        return output.join(', ')
-      }
+      Header: 'Medicals (main)',
+      columns: [
+        {
+          Header: 'Approval Date',
+          accessor: 'applicants[0].medical.date'
+        }
+      ]
     },
     {
-      Header: 'Consultant',
-      accessor: 'consultant.name'
-    },
-    {
-      Header: 'Weeks',
-      accessor: 'weeks'
+      Header: 'Other',
+      columns: [
+        {
+          Header: 'Consultant',
+          accessor: 'consultant.name'
+        }
+      ]
     }
   ])
 
-  if (isLoading || (applications !== null && applications.length == 0)) {
+  if (isLoading) {
     return <Spinner />
   }
 
-  if (applications === null) return <div></div>
+  if (applications === null) return <div>Error reading data.</div>
 
   return (
     <div className=''>

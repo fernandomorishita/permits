@@ -69,32 +69,75 @@ ul {
     }
   }
 }
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  top: -15px;
+  left: 130%;
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  @include atMedium {
+    left: -590%;
+  }
+}
+
+.tooltip .tooltiptext::after {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+
+  @include atMedium {
+    left: 100%; /* To the right of the tooltip */
+    border-color: transparent transparent transparent black;
+  }
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 /* Forms */
 .form {
-  label {
-    font-weight: bold;
+  &__section-label {
+    padding-bottom: 10px;
   }
 
   &__separator {
-    margin: 10px 0;
-    border: 1px solid black;
-
-    &--last {
-      margin-top: 20px;
-      margin-bottom: 0;
+    border-bottom: 2px solid black;
+    padding-top: 10px;
+    &--dashed {
+      padding-top: 0;
+      border-bottom: 2px dashed black;
     }
   }
 
   &__field {
-    padding-top: 20px;
-    &--last {
-      padding-bottom: 20px;
-    }
+    padding-bottom: 10px;
   }
 
   &__label {
-    padding-bottom: 10px;
-
     &--bold {
       font-weight: bold;
     }
@@ -106,6 +149,10 @@ ul {
     border-radius: 10px;
     border: none;
     background: lightgrey;
+  }
+
+  &__textarea {
+    resize: none;
   }
 
   &__opt {
@@ -147,7 +194,6 @@ ul {
   }
 
   &__applicant {
-    padding-bottom: 20px;
   }
 
   &__icon {
@@ -395,8 +441,9 @@ ul {
 
 /*=== Section - Application */
 .application {
+  padding: 20px;
   @include atMedium {
-    padding: 0 30%;
+    padding: 50px 30%;
   }
 }
 
@@ -404,9 +451,19 @@ ul {
 .dashboard {
   padding: 20px;
 
+  &__create {
+    text-align: center;
+    h1 {
+      padding-bottom: 20px;
+    }
+  }
   &__title {
     font-weight: bold;
     padding-top: 20px;
+    padding-bottom: 10px;
+  }
+
+  &__btn {
     padding-bottom: 10px;
   }
   @include atMedium {
@@ -580,4 +637,41 @@ ul {
     box-shadow: 1px 1px 5px $secondaryColor;
     border-radius: 20px;
   }
+}
+
+/*=== Section - Database */
+.database {
+  padding: 30px;
+  &__table {
+    width: 100%;
+    border-spacing: 0;
+    border: 1px solid black;
+
+    tr {
+      :last-child {
+        td {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    th,
+    td {
+      margin: 0;
+      padding: 0.5rem;
+      border-bottom: 1px solid black;
+      border-right: 1px solid black;
+
+      :last-child {
+        border-right: 0;
+      }
+    }
+  }
+}
+
+.db-filter {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: lightgrey;
 }

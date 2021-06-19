@@ -1,26 +1,32 @@
-import React, { useState, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { useTable, useSortBy, useFilters } from 'react-table'
+import ColumnFilter from './ColumnFilter'
 
 export default function Table({ columns, data, rowProps = () => ({}) }) {
-  const [filterInput, setFilterInput] = useState('')
-  const handleFilterChange = e => {
-    const value = e.target.value || undefined
-    setFilter('profilename', value) // Update the show.name filter. Now our table will filter and show only the rows which have a matching value
-    setFilterInput(value)
-  }
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, setFilter } = useTable({ columns, data, initialState: { hiddenColumns: ['_id'] } }, useFilters, useSortBy)
+  const defaultColumn = React.useMemo(
+    () => ({
+      // Let's set up our default Filter UI
+      Filter: ColumnFilter
+    }),
+    []
+  )
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data, defaultColumn, initialState: { hiddenColumns: ['_id'] } }, useFilters, useSortBy)
 
   return (
     <Fragment>
-      <input className='database__filter' value={filterInput} onChange={handleFilterChange} placeholder={'Search name'} />
       <table className='database__table' {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render('Header')}
-                  <span>{column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}</span>
+                <th {...column.getHeaderProps()}>
+                  <div>
+                    <span {...column.getSortByToggleProps()}>
+                      {column.render('Header')}
+                      {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
+                    </span>
+                  </div>
+                  <div>{column.canFilter ? column.render('Filter') : null}</div>
                 </th>
               ))}
             </tr>

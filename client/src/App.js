@@ -18,6 +18,7 @@ import Database from './components/database/Database'
 import Dashboard from './components/dashboard/Dashboard'
 import Application from './components/application/Application'
 import PrivateRoute from './components/routing/PrivateRoute'
+import ProcessApplication from './components/process/ProcessApplication'
 
 // Actions
 import { loadUser } from './actions/auth'
@@ -46,6 +47,7 @@ const App = () => {
                 <Route exact path='/database' component={Database} />
                 <PrivateRoute exact path='/dashboard' component={Dashboard} />
                 <PrivateRoute exact path='/application' component={Application} />
+                <PrivateRoute exact path='/process-application' component={ProcessApplication} />
               </Switch>
             </section>
           </section>

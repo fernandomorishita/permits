@@ -1,14 +1,13 @@
 const moment = require('moment')
 const { chartColors } = require('../utils/defines')
 
-exports.calcProcessingWeeks = (applDate, apprDate) => {
-  let useDate = ''
-  if (apprDate) {
-    useDate = apprDate
+exports.calcProcessingWeeks = (applDate, resDate) => {
+  console.log('hi')
+  if (resDate) {
+    return moment(resDate, 'YYYY-MM-DD').diff(moment(applDate, 'YYYY-MM-DD'), 'weeks')
   } else {
-    useDate = applDate
+    return moment().diff(moment(applDate, 'YYYY-MM-DD'), 'weeks')
   }
-  return moment().diff(moment(useDate, 'YYYY-MM-DD'), 'weeks')
 }
 
 exports.getMedicalStatus = medDate => {
@@ -128,8 +127,8 @@ exports.handleChartData = applications => {
       // Responses in the last days
       let diff = moment().diff(moment(appl.response.date, 'YYYY-MM-DD'), 'days')
       if (diff === 0) compiledData.responses.today++
-      if (diff > 0 && diff <= 7) compiledData.responses.week++
-      if (diff > 7 && diff <= 30) compiledData.responses.month++
+      if (diff >= 0 && diff <= 7) compiledData.responses.week++
+      if (diff >= 0 && diff <= 30) compiledData.responses.month++
     }
 
     // Handle Processed chart

@@ -28,7 +28,8 @@ router.get('/applications/by_response', async (req, res) => {
       'response.year': 1,
       'response.month': 1
     }
-    const result = await Application.find().sort(sort)
+    const result = await Application.find().populate('user_id', 'name')
+    //const result = await Application.find().sort(sort)
     res.json(result)
   } catch (error) {
     res.status(500).send('Server error, yo.')

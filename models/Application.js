@@ -8,6 +8,9 @@ const ApplicationSchema = new mongoose.Schema({
   status: {
     type: String
   },
+  type: {
+    type: String
+  },
   date: {
     date: {
       type: String,
@@ -58,6 +61,9 @@ const ApplicationSchema = new mongoose.Schema({
         is_upfront: {
           type: String,
           default: 'Requested'
+        },
+        approval_date: {
+          type: String
         }
       },
       biometrics: {
@@ -111,7 +117,24 @@ const ApplicationSchema = new mongoose.Schema({
     id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'response'
+    },
+    visaoffice: {
+      type: String
     }
+  },
+  passport: {
+    date_sent: {
+      type: String
+    },
+    date_received: {
+      type: String
+    },
+    vac: {
+      type: String
+    }
+  },
+  comments: {
+    type: String
   }
 })
 
