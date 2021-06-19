@@ -5,7 +5,7 @@ import axios from 'axios'
 import { getChartsQuery } from '../../actions/queries'
 import Spinner from '../general/Spinner'
 import Table from './Table'
-import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 import SelectColumnFilter from './SelectColumnFilter'
 
@@ -18,6 +18,9 @@ const Database = ({ queries: { applications, isLoading }, getChartsQuery, histor
     }
   }, [])
 
+  function nameCell(row) {
+    return <Link to={`/application/${row.row.values._id}`}>{row.value}</Link>
+  }
   const data = useMemo(() => applications)
   const columns = useMemo(() => [
     {
@@ -36,7 +39,7 @@ const Database = ({ queries: { applications, isLoading }, getChartsQuery, histor
         {
           Header: 'Name',
           accessor: 'user_id.name',
-          width: 10000
+          Cell: nameCell
         },
         {
           Header: 'Application Date',
@@ -52,10 +55,12 @@ const Database = ({ queries: { applications, isLoading }, getChartsQuery, histor
           Header: 'Visas',
           //accessor: 'visas',
           accessor: data => {
-            let output = []
-            data.applicants.map(applicant => {
-              output.push(applicant.visa_type)
+            let output = data.applicants.map(applicant => {
+              return applicant.visa_type
             })
+
+            let unique = output.filter((value, index, self) => self.indexOf(value) === index)
+
             return output.join(', ')
           },
           Filter: SelectColumnFilter,

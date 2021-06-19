@@ -24,11 +24,11 @@ router.get('/applications/by_response', async (req, res) => {
 
     const sort = {
       'date.year': 1,
-      'data.month': 1,
+      'date.month': 1,
       'response.year': 1,
       'response.month': 1
     }
-    const result = await Application.find().populate('user_id', 'name')
+    const result = await Application.find().populate('user_id', 'name').sort(sort)
     //const result = await Application.find().sort(sort)
     res.json(result)
   } catch (error) {

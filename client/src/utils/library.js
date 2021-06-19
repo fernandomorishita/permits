@@ -2,7 +2,6 @@ const moment = require('moment')
 const { chartColors } = require('../utils/defines')
 
 exports.calcProcessingWeeks = (applDate, resDate) => {
-  console.log('hi')
   if (resDate) {
     return moment(resDate, 'YYYY-MM-DD').diff(moment(applDate, 'YYYY-MM-DD'), 'weeks')
   } else {

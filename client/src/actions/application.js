@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { APPLICATION_READ, APPLICATION_ERROR } from './types'
+import { APPLICATION_READ, APPLICATION_ERROR, GET_APPL_BY_ID, APPL_BY_ID_ERROR, CLEAR_APPL_BY_ID } from './types'
 
 // Get current user application
 export const getApplication = () => async dispatch => {
@@ -37,4 +37,25 @@ export const createOrUpdateApplication = (formData, history) => async dispatch =
       type: APPLICATION_ERROR
     })
   }
+}
+
+export const getApplicationById = id => async dispatch => {
+  try {
+    const res = await axios.get(`/api/application/${id}`)
+
+    dispatch({
+      type: GET_APPL_BY_ID,
+      payload: res.data
+    })
+  } catch (error) {
+    dispatch({
+      type: APPL_BY_ID_ERROR
+    })
+  }
+}
+
+export const clearApplicationById = () => async dispatch => {
+  dispatch({
+    type: CLEAR_APPL_BY_ID
+  })
 }

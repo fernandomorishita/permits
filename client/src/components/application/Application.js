@@ -135,7 +135,7 @@ const Application = ({ visas: { visas }, application, visaoffices, vacs, getVisa
     return <Spinner />
   }
 
-  if (vacs.vacs.isLoading || vacs === null) {
+  if (vacs === null || vacs.vacs.isLoading) {
     return <Spinner />
   }
   return (

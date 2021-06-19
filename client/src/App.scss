@@ -451,6 +451,11 @@ ul {
 .dashboard {
   padding: 20px;
 
+  &__data {
+    textarea {
+      width: 100%;
+    }
+  }
   &__create {
     text-align: center;
     h1 {

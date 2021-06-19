@@ -9,6 +9,7 @@ import { getApplication } from '../../actions/application'
 // Components
 import Spinner from '../general/Spinner'
 import DashApplicant from './DashApplicant'
+import DashboardData from './DashboardData'
 
 // Library
 import { calcProcessingWeeks } from '../../utils/library'
@@ -37,6 +38,24 @@ const Dashboard = ({ auth, application, getApplication }) => {
 
   const responseDate = application.application.response ? application.application.response.date : ''
   const elapsedWeeks = calcProcessingWeeks(application.application.date.date, responseDate)
+  const userApplication = {
+    date: application.application.date.date,
+    status: application.application.status,
+    weeks: elapsedWeeks,
+    applicants: application.application.applicants,
+    response: {
+      date: application.application.response ? application.application.response.date : 'N/A',
+      visaOffice: application.application.response ? application.application.response.visaoffice : 'N/A'
+    },
+    passport: {
+      dateSent: application.application.passport ? application.application.passport.date_sent : 'N/A',
+      dateReceived: application.application.passport ? application.application.passport.date_received : 'N/A',
+      vac: application.application.passport ? application.application.passport.vac : 'N/A'
+    },
+    comments: application.application.comments
+  }
+  return <DashboardData name={auth.user.name} application={userApplication} />
+  /*
   return (
     <div className='dashboard'>
       <div className='card'>
@@ -60,6 +79,7 @@ const Dashboard = ({ auth, application, getApplication }) => {
       })}
     </div>
   )
+  */
 }
 
 Dashboard.propTypes = {

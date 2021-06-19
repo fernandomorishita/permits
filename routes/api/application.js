@@ -102,4 +102,20 @@ router.post('/', [auth, [check('applDate', 'Application date is required.').not(
     res.status(500).send('Server error')
   }
 })
+
+// @route   GET api/application/:user_id
+// @desc    Get application by user id
+// @access  Public
+router.get('/:id', async (req, res) => {
+  try {
+    const application = await Application.findOne({ _id: req.params.id }).populate('user_id', 'name')
+    if (!application) {
+      return res.status(400).json({ errors: errors.array })
+    }
+    res.json(application)
+  } catch (error) {
+    console.log(error)
+    res.status(500).send('Server error')
+  }
+})
 module.exports = router

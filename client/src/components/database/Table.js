@@ -12,6 +12,10 @@ export default function Table({ columns, data, rowProps = () => ({}) }) {
   )
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data, defaultColumn, initialState: { hiddenColumns: ['_id'] } }, useFilters, useSortBy)
 
+  function handleOnClick(e, row) {
+    e.preventDefault()
+    console.log(row.values._id)
+  }
   return (
     <Fragment>
       <table className='database__table' {...getTableProps()}>

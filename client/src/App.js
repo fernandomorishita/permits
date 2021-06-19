@@ -19,6 +19,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import Application from './components/application/Application'
 import PrivateRoute from './components/routing/PrivateRoute'
 import ProcessApplication from './components/process/ProcessApplication'
+import ViewApplication from './components/application/ViewApplication'
 
 // Actions
 import { loadUser } from './actions/auth'
@@ -45,6 +46,7 @@ const App = () => {
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/charts' component={Charts} />
                 <Route exact path='/database' component={Database} />
+                <Route exact path='/application/:id' component={ViewApplication} />
                 <PrivateRoute exact path='/dashboard' component={Dashboard} />
                 <PrivateRoute exact path='/application' component={Application} />
                 <PrivateRoute exact path='/process-application' component={ProcessApplication} />

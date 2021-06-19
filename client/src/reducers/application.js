@@ -1,8 +1,10 @@
-import { APPLICATION_READ, APPLICATION_ERROR, CLEAR_APPLICATION } from '../actions/types'
+import { APPLICATION_READ, APPLICATION_ERROR, CLEAR_APPLICATION, GET_APPL_BY_ID, APPL_BY_ID_ERROR, CLEAR_APPL_BY_ID } from '../actions/types'
 
 const initialState = {
   application: null,
-  isLoading: true
+  isLoading: true,
+  appl_by_id: null,
+  isLoadingApplById: true
 }
 
 export default function application(state = initialState, action) {
@@ -13,6 +15,11 @@ export default function application(state = initialState, action) {
     case APPLICATION_ERROR:
     case CLEAR_APPLICATION:
       return { ...state, application: null, isLoading: false }
+    case GET_APPL_BY_ID:
+      return { ...state, appl_by_id: payload, isLoadingApplById: false }
+    case APPL_BY_ID_ERROR:
+    case CLEAR_APPL_BY_ID:
+      return { ...state, appl_by_id: null, isLoadingApplById: false }
     default:
       return state
   }
