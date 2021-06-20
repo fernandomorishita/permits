@@ -6,6 +6,7 @@ import visas from './visas'
 import queries from './queries'
 import visaoffices from './visaoffices'
 import vacs from './vacs'
+import credentials from './credentials'
 
 export default combineReducers({
   auth,
@@ -14,5 +15,6 @@ export default combineReducers({
   visas,
   queries,
   visaoffices,
-  vacs
+  vacs,
+  credentials
 })

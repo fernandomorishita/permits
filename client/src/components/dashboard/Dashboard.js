@@ -44,16 +44,28 @@ const Dashboard = ({ auth, application, getApplication }) => {
     weeks: elapsedWeeks,
     applicants: application.application.applicants,
     response: {
-      date: application.application.response ? application.application.response.date : 'N/A',
-      visaOffice: application.application.response ? application.application.response.visaoffice : 'N/A'
+      date: application.application.response ? application.application.response.date : '',
+      visaOffice: application.application.response ? application.application.response.visaoffice : ''
     },
-    passport: {
-      dateSent: application.application.passport ? application.application.passport.date_sent : 'N/A',
-      dateReceived: application.application.passport ? application.application.passport.date_received : 'N/A',
-      vac: application.application.passport ? application.application.passport.vac : 'N/A'
-    },
+    passport: {},
+    college: {},
     comments: application.application.comments
   }
+  if (application.application.college) {
+    userApplication.college.name = application.application.college.name ? application.application.college.name : ''
+    userApplication.college.credential = application.application.college.credential ? application.application.college.credential : ''
+    userApplication.college.type = application.application.college.type ? application.application.college.type : ''
+    userApplication.college.intake = application.application.college.intake ? application.application.college.intake : ''
+    userApplication.college.hasAIP = application.application.college.has_aip ? application.application.college.has_aip : ''
+    userApplication.college.startedOnline = application.application.college.started_online ? application.application.college.started_online : ''
+  }
+
+  if (application.application.passport) {
+    userApplication.dateSent = application.application.passport.date_sent ? application.application.passport.date_sent : ''
+    userApplication.dateReceived = application.application.passport.date_received ? application.application.passport.date_received : ''
+    userApplication.vac = application.application.passport.vac ? application.application.passport.vac : ''
+  }
+
   return <DashboardData name={auth.user.name} application={userApplication} />
   /*
   return (

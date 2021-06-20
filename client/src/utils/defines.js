@@ -1,3 +1,6 @@
 //exports.chartColors = ['darkblue', '#d1a343', 'darkgreen']
 exports.chartColors = ['#393e46', '#00adb5', '#aad8d3']
+exports.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+exports.years = ['2020', '2021', '2022', '2023', '2024']
+exports.seasons = ['Fall', 'Winter', 'Spring', 'Summer']
 //exports.chartColors = ['#ff9292', '#ffb4b4', '#ffdcdc']

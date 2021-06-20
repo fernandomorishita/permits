@@ -451,7 +451,22 @@ ul {
 .dashboard {
   padding: 20px;
 
+  &__grid {
+    //display: grid;
+    //grid-template-columns: 1fr 1fr;
+  }
+  &__response {
+    //display: grid;
+    //grid-template-columns: 1fr 1fr;
+  }
   &__data {
+    display: grid;
+    grid-template-columns: 30% auto;
+    padding-bottom: 5px;
+
+    &__textarea {
+      grid-template-columns: 1fr;
+    }
     textarea {
       width: 100%;
     }
@@ -466,6 +481,8 @@ ul {
     font-weight: bold;
     padding-top: 20px;
     padding-bottom: 10px;
+  }
+  &__subtitle {
   }
 
   &__btn {

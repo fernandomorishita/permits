@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { APPLICATION_READ, APPLICATION_ERROR, GET_APPL_BY_ID, APPL_BY_ID_ERROR, CLEAR_APPL_BY_ID } from './types'
+import { APPLICATION_READ, APPLICATION_ERROR, DELETE_APPLICATION, GET_APPL_BY_ID, APPL_BY_ID_ERROR, CLEAR_APPL_BY_ID } from './types'
 
 // Get current user application
 export const getApplication = () => async dispatch => {
@@ -58,4 +58,16 @@ export const clearApplicationById = () => async dispatch => {
   dispatch({
     type: CLEAR_APPL_BY_ID
   })
+}
+
+export const deleteApplication = history => async dispatch => {
+  try {
+    await axios.delete('/api/application')
+    dispatch({
+      type: DELETE_APPLICATION
+    })
+    history.push('/dashboard')
+  } catch (error) {
+    console.log(error)
+  }
 }

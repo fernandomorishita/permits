@@ -38,7 +38,25 @@ router.post('/', [auth, [check('applDate', 'Application date is required.').not(
     return res.status(400).json({ errors: errors.array })
   }
 
-  const { applDate, applType, applicants, consultantName, comments, resDate, visaOffice, passDateSent, passDateReceived, passVac } = req.body
+  const {
+    applDate, //
+    applType,
+    applicants,
+    consultantName,
+    comments,
+    resDate,
+    visaOffice,
+    passDateSent,
+    passDateReceived,
+    passVac,
+    collegeName,
+    collegeCred,
+    intakeMonth,
+    intakeYear,
+    hasAIP,
+    startedOnline,
+    collegeType
+  } = req.body
 
   // Application Object
   applObj = {
@@ -55,7 +73,33 @@ router.post('/', [auth, [check('applDate', 'Application date is required.').not(
     consultant: {
       name: consultantName
     },
+
     comments: comments
+  }
+
+  if (collegeName) {
+    applObj.college = {}
+    applObj.college.name = collegeName
+  }
+  if (collegeCred) {
+    if (!applObj.college) applObj.college = {}
+    applObj.college.credential = collegeCred
+  }
+  if (collegeType) {
+    if (!applObj.college) applObj.college = {}
+    applObj.college.type = collegeType
+  }
+  if (intakeMonth && intakeYear) {
+    if (!applObj.college) applObj.college = {}
+    applObj.college.intake = intakeMonth.concat(String(intakeYear))
+  }
+  if (hasAIP) {
+    if (!applObj.college) applObj.college = {}
+    applObj.college.has_aip = hasAIP
+  }
+  if (startedOnline) {
+    if (!applObj.college) applObj.college = {}
+    applObj.college.started_online = startedOnline
   }
 
   if (resDate && resDate !== '') {
@@ -119,3 +163,15 @@ router.get('/:id', async (req, res) => {
   }
 })
 module.exports = router
+
+// @route   GET api/application
+// @desc    Delete an application by user id
+// @access  Private
+router.delete('/', auth, async (req, res) => {
+  try {
+    await Application.findOneAndRemove({ user_id: req.user.id })
+    res.json({ msg: 'Application Deleted' })
+  } catch (error) {
+    res.status().send('Server Error')
+  }
+})

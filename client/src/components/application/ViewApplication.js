@@ -38,15 +38,27 @@ const ViewApplication = ({
     weeks: elapsedWeeks,
     applicants: appl_by_id.applicants,
     response: {
-      date: appl_by_id.response ? appl_by_id.response.date : 'N/A',
-      visaOffice: appl_by_id.response ? appl_by_id.response.visaoffice : 'N/A'
+      date: appl_by_id.response ? appl_by_id.response.date : '',
+      visaOffice: appl_by_id.response ? appl_by_id.response.visaoffice : ''
     },
-    passport: {
-      dateSent: appl_by_id.passport ? appl_by_id.passport.date_sent : 'N/A',
-      dateReceived: appl_by_id.passport ? appl_by_id.passport.date_received : 'N/A',
-      vac: appl_by_id.passport ? appl_by_id.passport.vac : 'N/A'
-    },
+    passport: {},
+    college: {},
     comments: appl_by_id.comments
+  }
+
+  if (appl_by_id.college) {
+    application.college.name = appl_by_id.college.name ? appl_by_id.college.name : ''
+    application.college.credential = appl_by_id.college.credential ? appl_by_id.college.credential : ''
+    application.college.type = appl_by_id.college.type ? appl_by_id.college.type : ''
+    application.college.intake = appl_by_id.college.intake ? appl_by_id.college.intake : ''
+    application.college.hasAIP = appl_by_id.college.has_aip ? appl_by_id.college.has_aip : ''
+    application.college.startedOnline = appl_by_id.college.started_online ? appl_by_id.college.started_online : ''
+  }
+
+  if (appl_by_id.passport) {
+    appl_by_id.dateSent = appl_by_id.passport.date_sent ? appl_by_id.passport.date_sent : ''
+    appl_by_id.dateReceived = appl_by_id.passport.date_received ? appl_by_id.passport.date_received : ''
+    appl_by_id.vac = appl_by_id.passport.vac ? appl_by_id.passport.vac : ''
   }
   return <DashboardData name={appl_by_id.user_id.name} application={application} />
 }

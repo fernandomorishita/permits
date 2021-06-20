@@ -99,6 +99,18 @@ const ApplicationSchema = new mongoose.Schema({
     credential: {
       //denormalized
       type: String
+    },
+    type: {
+      type: String
+    },
+    intake: {
+      type: String
+    },
+    has_aip: {
+      type: String
+    },
+    started_online: {
+      type: String
     }
   },
   response: {

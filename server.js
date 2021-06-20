@@ -18,6 +18,7 @@ app.use('/api/visas', require('./routes/api/visas'))
 app.use('/api/queries', require('./routes/api/queries'))
 app.use('/api/visaoffices', require('./routes/api/visaoffices'))
 app.use('/api/vacs', require('./routes/api/vacs'))
+app.use('/api/credentials', require('./routes/api/credentials'))
 
 const PORT = process.env.PORT || 5000
 

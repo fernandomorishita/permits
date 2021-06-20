@@ -79,6 +79,45 @@ const Database = ({ queries: { applications, isLoading }, getChartsQuery, histor
       ]
     },
     {
+      Header: 'College',
+      columns: [
+        {
+          Header: 'Name',
+          accessor: 'college.name'
+        },
+        {
+          Header: 'Credential',
+          accessor: 'college.credential',
+          Filter: SelectColumnFilter,
+          filter: 'includes'
+        },
+        {
+          Header: 'Public/Private',
+          accessor: 'college.type',
+          Filter: SelectColumnFilter,
+          filter: 'includes'
+        },
+        {
+          Header: 'Intake',
+          accessor: 'college.intake',
+          Filter: SelectColumnFilter,
+          filter: 'includes'
+        },
+        {
+          Header: 'AIP',
+          accessor: 'college.has_aip',
+          Filter: SelectColumnFilter,
+          filter: 'includes'
+        },
+        {
+          Header: 'Started',
+          accessor: 'college.started_online',
+          Filter: SelectColumnFilter,
+          filter: 'includes'
+        }
+      ]
+    },
+    {
       Header: 'Response',
       columns: [
         {

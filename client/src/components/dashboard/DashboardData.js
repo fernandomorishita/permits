@@ -25,22 +25,56 @@ const DashboardData = ({ name, application }) => {
       {application.applicants.map(applicant => {
         return <DashApplicant key={applicant._id} applicant={applicant} />
       })}
-      <div className='dashboard__title'>Response</div>
-      <div className=''>
-        <div className=''>Date: {application.response.date}</div>
-        <div className=''>Visa Office: {application.response.visaOffice}</div>
+
+      <div className='dashboard__title'>College</div>
+      <div className='dashboard__grid'>
+        <div className='dashboard__data'>
+          <div className=''>Name:</div>
+          <div className=''>{application.college.name}</div>
+        </div>
+        <div className='dashboard__data'>
+          <div className='dashboard__subtitle'>Credential:</div> {application.college.credential}
+        </div>
+        <div className='dashboard__data'>
+          <div className=''>Type:</div> {application.college.type}
+        </div>
+        <div className='dashboard__data'>
+          <div className=''>Intake:</div> {application.college.intake}
+        </div>
+        <div className='dashboard__data'>
+          <div className=''>AIP:</div> {application.college.hasAIP}
+        </div>
+        <div className='dashboard__data'>
+          <div className=''>Started Online:</div> {application.college.startedOnline}
+        </div>
       </div>
-      <div className='dashboard__title'>Passport</div>
-      <div className=''>
-        <div className=''>Date Sent: {application.passport.dateSent}</div>
-        <div className=''>Date Received: {application.passport.dateReceived}</div>
-        <div className=''>VAC: {application.passport.dateReceived}</div>
+
+      <div className='dashboard__response'>
+        <div className=''>
+          <div className='dashboard__title'>Response</div>
+          <div className='dashboard__data'>
+            <div className=''>Date:</div> {application.response.date}
+          </div>
+          <div className='dashboard__data'>
+            <div className=''>Visa Office:</div> {application.response.visaOffice}
+          </div>
+        </div>
+        <div className=''>
+          <div className='dashboard__title'>Passport</div>
+          <div className='dashboard__data'>
+            <div className=''>Date Sent:</div> {application.passport.dateSent}
+          </div>
+          <div className='dashboard__data'>
+            <div className=''>Date Received:</div> {application.passport.dateReceived}
+          </div>
+          <div className='dashboard__data'>
+            <div className=''>VAC:</div> {application.passport.dateReceived}
+          </div>
+        </div>
       </div>
       <div className='dashboard__title'>Comments</div>
-      <div className='dashboard__data'>
-        <textarea name='' id='' cols='100' rows='10' disabled={true}>
-          {application.comments}
-        </textarea>
+      <div className='dashboard__data dashboard__data__textarea'>
+        <textarea name='' id='' cols='100' rows='10' value={application.comments} disabled={true}></textarea>
       </div>
     </div>
   )
