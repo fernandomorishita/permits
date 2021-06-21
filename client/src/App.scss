@@ -1,6 +1,8 @@
 /* Variables */
 $primaryColor: grey;
 $secondaryColor: #eeeeee;
+$lightPrimary: lightgrey;
+$darkPrimary: #333;
 
 /* Globals */
 * {
@@ -148,7 +150,7 @@ ul {
     padding: 10px;
     border-radius: 10px;
     border: none;
-    background: lightgrey;
+    background: $lightPrimary;
   }
 
   &__textarea {
@@ -159,7 +161,7 @@ ul {
     padding: 10px;
     border: none;
     border-radius: 10px;
-    background: lightgrey;
+    background: $lightPrimary;
   }
 
   &__short {
@@ -167,7 +169,7 @@ ul {
     padding: 10px;
     border-radius: 10px;
     border: none;
-    background: lightgrey;
+    background: $lightPrimary;
   }
 
   &__flex {
@@ -212,7 +214,7 @@ ul {
   text-align: center;
 
   &-grey {
-    background: grey;
+    background: $primaryColor;
   }
 }
 /* 1 - Root */
@@ -247,7 +249,7 @@ ul {
   width: 100%;
   height: 50px;
   padding: 10px;
-  background: grey;
+  background: $primaryColor;
   display: grid;
   grid-template-columns: 20% auto 20%;
   align-items: center;
@@ -396,7 +398,7 @@ ul {
 .mobile-menu {
   width: 100%;
   height: 100%;
-  background: grey;
+  background: $primaryColor;
   display: none;
   padding: 70px 20px 0 20px;
   position: fixed;
@@ -408,6 +410,10 @@ ul {
 
   li {
     padding: 10px 0;
+  }
+
+  a {
+    color: white;
   }
 
   @include atMedium {
@@ -422,9 +428,13 @@ ul {
   top: 0;
   width: 100%;
   height: 100%;
-  background: grey;
+  background: $primaryColor;
   padding: 50px 25px;
   z-index: 1;
+  color: $darkPrimary;
+  a {
+    color: white;
+  }
 
   &__logo {
     font-size: 1.5rem;
@@ -664,7 +674,6 @@ ul {
 
 /*=== Section - Database */
 .database {
-  height: 100vh;
   overflow-x: scroll;
   padding: 30px;
   &__table {
@@ -698,5 +707,5 @@ ul {
   padding: 10px;
   border-radius: 10px;
   border: none;
-  background: lightgrey;
+  background: $lightPrimary;
 }

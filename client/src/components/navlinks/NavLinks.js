@@ -17,6 +17,9 @@ const NavLinks = ({ auth, menu, toggleMobileMenu, screen }) => {
           <Link to='/database'>
             <li>Database</li>
           </Link>
+          <Link to='/faq'>
+            <li>FAQ</li>
+          </Link>
         </ul>
       </div>
       {auth.isAuthenticated && auth.user ? (
