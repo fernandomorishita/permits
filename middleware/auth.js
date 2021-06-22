@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const config = require('config')
+const {getJWTSecret} = require('../config/configs')
 
 module.exports = function (req, res, next) {
   // Get token from header
@@ -10,9 +11,11 @@ module.exports = function (req, res, next) {
     return res.status(401).json({ msg: 'Access denied, yo.' })
   }
 
+
   // Verify token
   try {
-    const decoded = jwt.verify(token, /*config.get('jwtSecret')*/ process.env.JWT_SECRET)
+    const getJWTSecret = getJWTSecret()
+    const decoded = jwt.verify(token, /*config.get('jwtSecret') process.env.JWT_SECRET*/ getJWTSecret)
     req.user = decoded.user
     next()
   } catch (error) {

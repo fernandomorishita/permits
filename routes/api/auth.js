@@ -6,6 +6,7 @@ const config = require('config')
 const { check, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 
+const {getJWTSecret} = require('../../config/configs')
 const auth = require('../../middleware/auth')
 const User = require('../../models/User')
 
@@ -33,6 +34,7 @@ router.post('/', [check('email', 'Include a valid email').isEmail(), check('pass
   }
 
   const { email, password } = req.body
+  const jwtSecret = getJWTSecret()
 
   try {
     // see if user exists
@@ -56,7 +58,7 @@ router.post('/', [check('email', 'Include a valid email').isEmail(), check('pass
       }
     }
 
-    jwt.sign(payload, /*config.get('jwtSecret')*/ process.env.JWT_SECRET, { expiresIn: 360000 }, (err, token) => {
+    jwt.sign(payload, /*config.get('jwtSecret') process.env.JWT_SECRET*/ jwtSecret, { expiresIn: 360000 }, (err, token) => {
       if (err) throw err
       res.json({ token })
     })
