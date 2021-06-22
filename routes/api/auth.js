@@ -56,7 +56,7 @@ router.post('/', [check('email', 'Include a valid email').isEmail(), check('pass
       }
     }
 
-    jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 360000 }, (err, token) => {
+    jwt.sign(payload, /*config.get('jwtSecret')*/ process.env.JWT_SECRET, { expiresIn: 360000 }, (err, token) => {
       if (err) throw err
       res.json({ token })
     })
