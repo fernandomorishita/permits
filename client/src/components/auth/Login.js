@@ -22,7 +22,7 @@ const Login = ({ auth, login }) => {
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
   const onSubmit = async e => {
     e.preventDefault()
-    login(email, password)
+    login(email.toLowerCase(), password)
   }
   return (
     <div className='auth'>

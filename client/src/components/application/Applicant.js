@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 const Applicants = ({ visas: { visas }, applicant, index, formData, setFormData }) => {
   // Deconstruct applicants for manipulation
-  const { applicants } = formData
+  let { applicants } = formData
 
   const handleRemoveAppl = (e, index) => {
     // Remove specific applicant from state array
@@ -23,6 +23,7 @@ const Applicants = ({ visas: { visas }, applicant, index, formData, setFormData 
         break
       case 'status':
         applicants[index].status = e.target.value
+        if (e.target.value !== 'Approved' && applicants[index].response && applicants[index].response.date) applicants[index].response.date = ''
         break
       case 'type':
         applicants[index].type = e.target.value
@@ -36,12 +37,30 @@ const Applicants = ({ visas: { visas }, applicant, index, formData, setFormData 
       case 'bioDate':
         applicants[index].biometrics.date = e.target.value
         break
+      case 'resDate':
+        if (!applicants[index].response) applicants[index].response = {}
+        applicants[index].response.date = e.target.value
+        break
       default:
         break
     }
     setFormData({ ...formData, applicants })
   }
 
+  const copyResponse = e => {
+    e.preventDefault()
+    applicants = applicants.map((appl, index) => {
+      if (index !== 0) {
+        appl.status = applicants[0].status
+        if (!appl.reponse && applicants[0].response && applicants[0].response.date) {
+          appl.response = {}
+          appl.response.date = applicants[0].response.date
+        }
+      }
+      return appl
+    })
+    setFormData({ ...formData, applicants })
+  }
   return (
     <div className='form__applicant'>
       <div className='form__flex form__flex--justify'>
@@ -92,6 +111,19 @@ const Applicants = ({ visas: { visas }, applicant, index, formData, setFormData 
         <div className='form__label'>Biometrics date </div>
         <input className='form__short' type='date' value={applicant.biometrics.date} onChange={e => onChange(e, index, 'bioDate')} />
       </div>
+      <div className='form__field'>
+        <div className='form__label'>Response date </div>
+        <input className='form__short' type='date' value={applicant.response ? applicant.response.date : ''} disabled={applicant.status !== 'Approved'} onChange={e => onChange(e, index, 'resDate')} />
+      </div>
+
+      {applicant.type === 'Main' ? (
+        <div className='form__field'>
+          <div className='form__label'>Copy response for all applicants </div>
+          <input className='btn btn-grey form__short' type='button' value='Copy' disabled={applicant.status !== 'Approved'} onClick={e => copyResponse(e)} />
+        </div>
+      ) : (
+        ''
+      )}
       <div className='form__section-label'>
         <div className='form__separator form__separator--dashed'></div>
       </div>

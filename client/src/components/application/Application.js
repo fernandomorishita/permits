@@ -28,6 +28,9 @@ const Application = ({ visas: { visas }, application, visaoffices, vacs, credent
     },
     biometrics: {
       date: ''
+    },
+    response: {
+      date: ''
     }
   }
 
@@ -44,11 +47,19 @@ const Application = ({ visas: { visas }, application, visaoffices, vacs, credent
     applicants: [{ ...applData, type: 'Main' }],
     consultantName: '',
     college: collegeData,
+    comments: '',
     resDate: '',
     visaOffice: '',
     passDateSent: '',
     passDateReceived: '',
-    passVac: ''
+    passVac: '',
+    collegeName: '',
+    collegeCred: '',
+    collegeType: '',
+    intakeMonth: '',
+    intakeYear: '',
+    hasAIP: '',
+    startedOnline: ''
   })
 
   // useEffects
@@ -123,7 +134,25 @@ const Application = ({ visas: { visas }, application, visaoffices, vacs, credent
   useEffect(() => {
     getVisaOffices()
   }, [])
-  const { applDate, applType, applicants, consultantName, comments, resDate, visaOffice, passDateSent, passDateReceived, passVac, collegeName, collegeCred, intakeMonth, intakeYear, hasAIP, startedOnline, collegeType } = formData
+  const {
+    applDate, //
+    applType,
+    applicants,
+    consultantName,
+    comments,
+    resDate,
+    visaOffice,
+    passDateSent,
+    passDateReceived,
+    passVac,
+    collegeName,
+    collegeCred,
+    intakeMonth,
+    intakeYear,
+    hasAIP,
+    startedOnline,
+    collegeType
+  } = formData
 
   const handleAddAppl = (e, index) => {
     applicants.push({ ...applData, type: 'Other' })
@@ -161,15 +190,15 @@ const Application = ({ visas: { visas }, application, visaoffices, vacs, credent
     return <Spinner />
   }
 
-  if (visaoffices.isLoading || visaoffices.visaOffices === null) {
+  if (visaoffices.visaOffices === null || visaoffices.isLoading) {
     return <Spinner />
   }
 
-  if (vacs === null || vacs.vacs.isLoading) {
+  if (vacs.vacs === null || vacs.vacs.isLoading) {
     return <Spinner />
   }
 
-  if (credentials === null || credentials.credentials.isLoading) {
+  if (credentials.credentials === null || credentials.credentials.isLoading) {
     return <Spinner />
   }
 
